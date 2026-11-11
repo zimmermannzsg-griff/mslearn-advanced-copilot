@@ -1,6 +1,7 @@
 import json
 from os.path import dirname, abspath, join
-from fastapi import FastAPI
+from typing import List
+from fastapi import FastAPI, HTTPException
 from fastapi.responses import RedirectResponse
 from fastapi.staticfiles import StaticFiles
 
@@ -29,6 +30,14 @@ def root():
 @app.get('/countries')
 def countries():
     return list(data.keys())
+
+
+@app.get('/countries/{country}')
+def cities(country: str) -> List[str]:
+    """Return the available cities for a country or region."""
+    if country not in data:
+        raise HTTPException(status_code=404, detail="Country not found")
+    return list(data[country].keys())
 
 
 @app.get('/countries/{country}/{city}/{month}')

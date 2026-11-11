@@ -6,10 +6,46 @@ Gain more practical experience by using this repository that contains a Python W
 
 [![Powered by Awesome Copilot](https://img.shields.io/badge/Powered_by-Awesome_Copilot-blue?logo=githubcopilot)](https://aka.ms/awesome-github-copilot)
 
-## Requirements
+## Prerequisites
 
-1. Enable your [GitHub Copilot service](https://github.com/github-copilot/signup)
-1. Open [this repository with Codespaces](https://codespaces.new/MicrosoftDocs/mslearn-copilot-codespaces-python)
+- Python 3.10 or later
+- GitHub Copilot is needed only if you want to complete the Copilot exercise below.
+
+## Run the project
+
+### Run locally
+
+From the repository root, create and activate a virtual environment, then install the dependencies:
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+python -m pip install -r requirements.txt
+```
+
+On Windows PowerShell, activate the virtual environment with:
+
+```powershell
+.venv\Scripts\Activate.ps1
+```
+
+Start the development server:
+
+```bash
+python -m uvicorn main:app --reload
+```
+
+Open [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs) to explore the API. The root URL redirects to the interactive API documentation. The API includes `GET /countries`, `GET /countries/{country}`, and `GET /countries/{country}/{city}/{month}`.
+
+To run the tests, open another terminal in the repository root, activate the virtual environment, and run:
+
+```bash
+python -m pytest
+```
+
+### Run in GitHub Codespaces
+
+Open [this repository in Codespaces](https://codespaces.new/MicrosoftDocs/mslearn-copilot-codespaces-python). The development container installs the dependencies and starts the server automatically. Open the forwarded **Application** port (8000) to view the API docs.
 
 ## 💪🏽 Exercise
 The current API is not exposing country/{country} which needs to be implemented to list cities. The route should allow only GET HTTP requests with a JSON response providing information from the historical high and low for that country, city, and given month.
